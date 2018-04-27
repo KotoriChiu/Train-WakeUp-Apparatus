@@ -16,7 +16,8 @@ TrainSimulator WakeUp Apparatus (模擬列車警醒裝置)
     再來是我是怎麼做出Arduino在Serial序列埠印出字元'a'||'s' ，然後主機偵測程
     式就能偵測到並作相對應的動作，首先Arduino IDE的Serial Port並不會產生log檔
     ，所以程是無從抓到Uno板回傳的任何數據，於是我是使用 Tera Term來攔截Arduino
-    回傳的數據，它會產生log檔，詳細交學我有找到一篇教學文"http://coopermaa2nd.blogspot.tw/2012/01/arduino.html"
+    回傳的數據，它會產生log檔，詳細交學我有找到一篇教學文:
+    http://coopermaa2nd.blogspot.tw/2012/01/arduino.html
 
 ### 所需環境與配備(元件)
     本開發專案使用到Arduino Uno *2 蜂鳴器*1 微動開關*2以及遊戲"Train Simulator"
