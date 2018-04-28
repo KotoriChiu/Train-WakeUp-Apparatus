@@ -8,9 +8,9 @@
 int main(){
     int train = 1;
     while(1){
-    while(FindWindow(0,"Train Simulator") && !access("D:/Steam/steamapps/common/RailWorks/Write Cache",0)){
+    while(FindWindow(0,"Train Simulator") && !access("D:/Steam/steamapps/common/RailWorks/Write Cache",0)){ //Write Cache遊戲執行時產生的資料夾 檢查用 可以不用加
         char a ;
-        char *filename = "G:/yee/teraterm.log";
+        char *filename = "G:/yee/teraterm.log"; //log文件位子 請自行修改
         FILE *fp = fopen(filename,"r");
         char buf[1000];
         int lineCnt = 0;

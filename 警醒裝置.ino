@@ -31,7 +31,7 @@ void loop(){
             Serial.println("s");
             step_up_reciprocal = 10;
             while(digitalRead(sw)==HIGH){
-                digitalWrite(2,LOW);
+                digitalWrite(2,HIGH);
                 digitalWrite(3,HIGH);
                 unsigned long a = millis()/1000;
                 if(a - previousTime > 1){
@@ -59,7 +59,7 @@ void loop(){
             step_on_reciprocal = 20;
             while(digitalRead(sw)==LOW){
               unsigned long b = millis()/1000;
-                digitalWrite(2,LOW);
+                digitalWrite(2,HIGH);
                 digitalWrite(3,HIGH);
                 if(b - previousTime > 1){
                     previousTime ++;
