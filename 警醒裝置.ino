@@ -1,19 +1,23 @@
-int sw = 7;
-int step_on_reciprocal = 20;
-int step_up_reciprocal = 10;
-unsigned long previousTime = 0;
-int uno1 = 2;
-int uno2 = 3;
+int sw = 7;                         //警醒裝置開關腳位
+int powersw = 9;                    //電源開關(決定要不要啟用警醒裝置)
+int step_on_reciprocal = 90;        //踩著時倒數秒數
+int step_up_reciprocal = 90;        //放開時倒數秒數
+unsigned long previousTime = 0;     //儲存系統運作時間(故用unsigned long)
+int uno1 = 2;                       //傳給音效uno板的訊號線1
+int uno2 = 3;                       //傳給音效uno板的訊號線2
 
 
 void setup(){
-    pinMode(sw,INPUT);
-    pinMode(2,OUTPUT);
-    pinMode(3,OUTPUT);
-    Serial.begin(9600);
+    pinMode(sw,INPUT);      //警醒裝置開關設為讀取
+    pinMode(2,OUTPUT);      //訊號線1設為輸出
+    pinMode(3,OUTPUT);      //訊號線2設為輸出
+    pinMode(powersw,INPUT); //電源開關設為讀取
+    Serial.begin(9600);     //設定鮑率9600
 }
 void loop(){
-    while(digitalRead(sw)==HIGH){
+    if(digitalRead(powersw) == HIGH){   //決定要不要啟用警醒裝置
+    while(digitalRead(sw)==HIGH){      
+        if(digitalRead(powersw) == LOW) break;
         step_up_reciprocal = 10;
         Serial.println("a");
         unsigned long step_on = millis()/1000;
@@ -43,7 +47,8 @@ void loop(){
             digitalWrite(3,LOW);
         }
     }
-    while(digitalRead(sw)==LOW){
+    while(digitalRead(sw)==LOW){    
+        if(digitalRead(powersw) == LOW) break;
         step_on_reciprocal = 20;
         Serial.println("a");
         unsigned long step_up = millis()/1000;
@@ -51,7 +56,10 @@ void loop(){
             step_up_reciprocal--;
             previousTime++;
         }
-        if(step_up_reciprocal <= 5 && step_up_reciprocal > 0){
+        if(step_up_reciprocal <= 10 && step_up_reciprocal > 5){
+            digitalWrite(2,HIGH);
+            digitalWrite(3,LOW);
+        }else if(step_up_reciprocal <= 5 && step_up_reciprocal != 0){
             digitalWrite(2,LOW);
             digitalWrite(3,HIGH);
         }else if(step_up_reciprocal == 0 ){
@@ -68,6 +76,7 @@ void loop(){
         }else{
             digitalWrite(2,LOW);
             digitalWrite(3,LOW);
+            }
         }
     }
 }
