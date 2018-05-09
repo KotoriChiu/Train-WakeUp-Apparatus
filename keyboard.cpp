@@ -23,7 +23,6 @@ int main(){
         if(!arduino.isConnected()){
             printf("Arduino未連接!!!!");
         }else{
-            
             while(FindWindow(0,"Train Simulator") && !access("D:/Steam/steamapps/common/RailWorks/Write Cache",0)){ //這裡需要改成 當進入列車任務時
                 if(aaaa){
         	        printf("遊戲文件已偵測到 開始執行!!!\n");
